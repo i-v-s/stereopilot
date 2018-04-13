@@ -179,12 +179,11 @@ void WireFinder::disparityCallback(const stereo_msgs::DisparityImage& msg)
         currentFps_ = 1000.0 / diff.count();
         lastDisparity_ = ms;
 
-        /*auto &mi = msg.image;
+        auto &mi = msg.image;
         cv::Mat fi( mi.height, mi.width, CV_32FC1, (void *)&(mi.data[0])), bi;
         fi.convertTo(bi, CV_8U, 255.0 / msg.max_disparity);
         int min, max;
         selectRange(bi, &min, &max);
-
 
         if (stateImagePub_.getNumSubscribers() > 0 && ms > lastOut_)
         {
@@ -192,7 +191,7 @@ void WireFinder::disparityCallback(const stereo_msgs::DisparityImage& msg)
             drawResult(&stateImage, cv::Size(640, 480), bi, min, max);
             stateImagePub_.publish(cv_bridge::CvImage(std_msgs::Header(), "bgr8", stateImage).toImageMsg());
             lastOut_ = ms + minOutDiff_;
-        }*/
+        }
     }
     catch (cv_bridge::Exception& e)
     {
